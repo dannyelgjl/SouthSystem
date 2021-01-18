@@ -1,8 +1,11 @@
 import React, { useEffect, useState, useCallback, FormEvent } from 'react';
 // Api service
 import api from '../../services/api';
+// Icons
+import { MdAddShoppingCart, MdDelete, MdUpdate } from 'react-icons/md';
+import { BiCommentDetail } from 'react-icons/bi';
 // Styles
-import { BookList } from './styles'
+import { BookList, Form, Container } from './styles'
 
 interface IBookVolumeInfo {
   id: string;
@@ -27,27 +30,32 @@ const Home: React.FC = () => {
   const handleSubmit = useCallback(async (event: FormEvent<HTMLFormElement>): Promise<void> => {
     event.preventDefault();
 
-    api.get(`volumes?q=${book}&key=${process.env.REACT_APP_API_KEY_GOOGLE_BOOK}&maxResults=9`)
+    api.get(`volumes?q=${book}&key=${process.env.REACT_APP_API_KEY_GOOGLE_BOOK}&maxResults=12`)
       .then(response => {
         console.log(response.data);
         setResults(response.data.items);
         setBook("");
       });
+
   }, [book, result]);
 
   return (
     <>
-      <h1>Buscar Livros</h1>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          value={book}
-          onChange={e => setBook(e.target.value)}
-        />
+      <Container>
+        <Form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            value={book}
+            onChange={e => setBook(e.target.value)}
+            placeholder="Busque seus livros..."
+          />
 
-        <button type="submit">Buscar</button>
-      </form>
+          <button type="submit">Buscar</button>
+        </Form>
 
+
+
+      </ Container >
       <BookList>
         {result.map(book => (
           <li key={book.id}>
@@ -56,14 +64,10 @@ const Home: React.FC = () => {
                 <img src={book.volumeInfo.imageLinks.thumbnail} alt={book.title} />
                 <span>AUTOR: {book.volumeInfo.authors}</span>
               </div>
-              <div className="text-card-book">
-
-              </div>
             </div>
           </li>
         ))}
       </BookList>
-
     </>
   )
 }

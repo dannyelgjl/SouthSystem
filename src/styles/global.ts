@@ -13,6 +13,14 @@ export default createGlobalStyle`
     color: #fff;
     -webkit-font-smoothing: antialiased;
   }
+
+  #root {
+    max-width: 1200px;
+    height: 100%;
+    margin: 0 auto;
+    padding: 0 20px 50px;
+  }
+
   body, input, button {
     font-family: 'Roboto Slab', serif;
     font-size: 16px;
@@ -20,6 +28,15 @@ export default createGlobalStyle`
   h1, h2, h3, h4, h5, strong {
     font-weight: 500;
   }
+
+  a {
+    text-decoration: none;
+  }
+
+  ul {
+    list-style: none;
+  }
+
   button {
     cursor: pointer;
   }

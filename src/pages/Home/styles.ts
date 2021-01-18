@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { shade } from 'polished';
-import books from '../../assets/images/books.jpg'
+import books from '../../assets/images/books.jpg';
+import { darken } from 'polished';
 
 export const Container = styled.div`
   display: flex;
@@ -10,6 +11,15 @@ export const Container = styled.div`
   background: url(${books}) no-repeat center;
   height: 600px;
   width: 100%;
+
+  a {
+    > img {
+      width: 80px;
+      height: 80px;
+      margin-right: 10px;
+      border-radius: 50%;
+    }
+  }
 `;
 
 export const Form = styled.form`
@@ -17,7 +27,6 @@ export const Form = styled.form`
   align-items: center;
   margin-top: 20px;
   width: 700px;
-  z-index: 10;
 
   > input {
     flex: 1;
@@ -74,7 +83,7 @@ export const BookList = styled.ul`
 
         > img {
           width: 220px;
-          height: 220px;
+          height: 280px;
           border-radius: 4PX;
           border: 1px solid #fe6e00;
           margin: 30px 10px 10px;
@@ -86,9 +95,38 @@ export const BookList = styled.ul`
           font-size: 18px;
           font-weight: bold;
           color: #fff;
+          min-height: 100px;
         }
       }
     }
 
+    button {
+      background: #fe6e00;
+      color: #fff;
+      border: 0;
+      border-radius: 4px;
+      overflow: hidden;
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+      transition: background 0.2s;
+      &:hover {
+        background: ${darken(0.03, '#fe6e00' )}
+      }
+      div {
+        display: flex;
+        align-items: center;
+        padding: 12px;
+        background: rgba(0, 0, 0, 0.1);
+        svg {
+          margin-right: 5px;
+        }
+      }
+      span {
+        flex: 1;
+        text-align: center;
+        font-weight: bold;
+      }
+    }
   }
 `

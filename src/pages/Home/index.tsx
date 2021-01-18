@@ -6,6 +6,8 @@ import { MdAddShoppingCart, MdDelete, MdUpdate } from 'react-icons/md';
 import { BiCommentDetail } from 'react-icons/bi';
 // Styles
 import { BookList, Form, Container } from './styles'
+// Imagem
+import logo from '../../assets/logo/SouthSystemLogo.jpg'
 
 interface IBookVolumeInfo {
   id: string;
@@ -42,6 +44,8 @@ const Home: React.FC = () => {
   return (
     <>
       <Container>
+        <a href="https://southsystem.com.br/" target="_blank"><img src={logo} alt="South System" /></a>
+
         <Form onSubmit={handleSubmit}>
           <input
             type="text"
@@ -49,12 +53,8 @@ const Home: React.FC = () => {
             onChange={e => setBook(e.target.value)}
             placeholder="Busque seus livros..."
           />
-
           <button type="submit">Buscar</button>
         </Form>
-
-
-
       </ Container >
       <BookList>
         {result.map(book => (
@@ -65,6 +65,13 @@ const Home: React.FC = () => {
                 <span>AUTOR: {book.volumeInfo.authors}</span>
               </div>
             </div>
+
+            <button type="button" onClick={() => { }}>
+              <div>
+                <BiCommentDetail size={16} color="#FFF" />
+              </div>
+              <span>Detalhes</span>
+            </button>
           </li>
         ))}
       </BookList>

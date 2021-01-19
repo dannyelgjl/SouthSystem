@@ -117,10 +117,12 @@ export const BookList = styled.ul`
       margin-top: 10px;
       display: flex;
       align-items: center;
-      transition: background 0.2s;
+      transition: transform 0.5s;
+
       &:hover {
-        background: ${darken(0.03, '#fe6e00' )}
+        transform: scale(1.1);
       }
+
       div {
         display: flex;
         align-items: center;
@@ -130,6 +132,7 @@ export const BookList = styled.ul`
           margin-right: 5px;
         }
       }
+      
       span {
         flex: 1;
         text-align: center;

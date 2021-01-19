@@ -3,6 +3,7 @@ import React, { useEffect, useState, useCallback, FormEvent } from 'react';
 import Modal from '../../components/Modal';
 import ModalContent from '../../components/ModalContent';
 import Profile from '../../components/Profile';
+import Pagination from '../../components/Pagination';
 // Context
 import { useBookModal } from '../../context/BookContext';
 // Api service
@@ -17,7 +18,7 @@ import logo from '../../assets/logo/SouthSystemLogo.jpg';
 import { toast } from 'react-toastify';
 
 
-interface IBookVolumeInfo {
+export interface IBookVolumeInfo {
   id: string;
   volumeInfo: IImageLinks;
 }
@@ -33,12 +34,31 @@ interface IImageLinks {
 const Home: React.FC = () => {
   const { setBookModal } = useBookModal();
 
-  const [book, setBook] = useState("");
-  const [result, setResults] = useState<IBookVolumeInfo[]>([]);
+  const [textFilter, setTextFilter] = useState("");
+  const [books, setBooks] = useState<IBookVolumeInfo[]>([]);
   const [maxResults, setMaxResults] = useState('1');
   const [startIndex, setStartIndex] = useState('5');
   const [modalOpen, setModalOpen] = useState(false);
 
+  const [loading, setLoading] = useState(false);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage, setPostsPerPage] = useState(2);
+
+  useEffect(() => {
+    const renderBooksDefault = async () => {
+      setLoading(true);
+      const res = await api.get('volumes?q=flowers&filter=free-ebooks&key=AIzaSyBztfyfAcTV_yfZX951VfCMoIDmQ7Cb5Ec');
+      setBooks(res.data.items);
+      setLoading(false);
+    }
+
+    renderBooksDefault();
+  }, []);
+
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = books.slice(indexOfFirstPost, indexOfLastPost);
 
   // Enviando dados do formulário
   const handleSubmit = useCallback(async (event: FormEvent<HTMLFormElement>): Promise<void> => {
@@ -47,24 +67,24 @@ const Home: React.FC = () => {
     if (maxResults > '40' || maxResults < '1') {
       toast.error('max results must be between 1 and 40');
     } else {
-      api.get(`volumes?q=${book}&key=${process.env.REACT_APP_API_KEY_GOOGLE_BOOK}&maxResults=${startIndex}`)
+      api.get(`volumes?q=${textFilter}&key=${process.env.REACT_APP_API_KEY_GOOGLE_BOOK}&maxResults=${startIndex}`)
         .then(response => {
           if (startIndex >= response.data.totalItems || startIndex < '1') {
             toast.error(
-              `Livro ${book} não encontrado`
+              `Livro ${textFilter} não encontrado`
             );
           } else {
             if (response.data.items.length > '0') {
               console.log(response.data);
-              setResults(response.data.items);
-              setBook("");
+              setBooks(response.data.items);
+              setTextFilter("");
             }
           }
         }).catch(err => {
-          toast.error('error')
+          toast.error('Você não digitou nada no campo de busca...😥')
         });;
     }
-  }, [book, result, maxResults, startIndex]);
+  }, [books, textFilter, maxResults, startIndex]);
 
 
   // Detalhes do livro
@@ -87,8 +107,8 @@ const Home: React.FC = () => {
         <Form onSubmit={handleSubmit}>
           <input
             type="text"
-            value={book}
-            onChange={e => setBook(e.target.value)}
+            value={textFilter}
+            onChange={e => setTextFilter(e.target.value)}
             placeholder="Busque seus livros..."
           />
 
@@ -105,7 +125,7 @@ const Home: React.FC = () => {
       </ Container >
 
       <BookList>
-        {result.map(book => (
+        {currentPosts.map(book => (
           <li key={book.id}>
             <div className="container-card-book">
               <div className="image-card-book">
@@ -123,6 +143,8 @@ const Home: React.FC = () => {
           </li>
         ))}
       </BookList>
+
+      <Pagination postsPerPage={postsPerPage} totalPosts={books.length} />
     </>
   )
 }

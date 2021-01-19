@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const Wrapper = styled.div`
   display: flex;
+  padding: 14px;
   align-items: center;
   justify-content: center;
   flex-direction: column;
@@ -10,11 +11,12 @@ export const Wrapper = styled.div`
   width: 1200px;
   height: 500px;
   color: #000;
+  position: relative;
   
   button {
     position: absolute;
-    right: 380px;
-    top: 720px;
+    right: 20px;
+    top: 20px;
     border: 0;
     width: 35px;
     height: 35px;

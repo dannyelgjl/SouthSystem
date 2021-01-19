@@ -31,7 +31,8 @@ export const Form = styled.form`
     width: 400px;
     height: 50px;
     border: 0;
-    border-radius: 5px 0 0 5px;
+    border-radius: 12px 0 0 12px;
+    padding: 10px;
     color: #fe6e00;
     border: 2px solid #fff;
     border-right: 0;
@@ -48,7 +49,7 @@ export const Form = styled.form`
   button {
     width: 80px;
     height: 50px;
-    border-radius: 0 6px 6px 0;
+    border-radius: 0 12px 12px 0;
     background: #fe6e00;
     border: 0;
     color: #fff;

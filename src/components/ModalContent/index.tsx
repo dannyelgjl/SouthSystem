@@ -3,19 +3,9 @@ import React from 'react';
 import { useBookModal } from '../../context/BookContext';
 // Estilos
 import { Content, Wrapper } from './styles';
+// Interfaces
+import { IBookVolumeInfo } from '../../interfaces/interface';
 
-interface IBookVolumeInfo {
-  id: string;
-  volumeInfo: IImageLinks;
-}
-
-interface IImageLinks {
-  title: string;
-  imageLinks: {
-    thumbnail: string;
-  }
-  authors: [];
-}
 
 type Props = {
   setModalOpen: any;

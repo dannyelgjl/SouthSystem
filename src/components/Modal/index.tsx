@@ -4,7 +4,6 @@ import { createPortal } from 'react-dom';
 // estilos
 import { Wrapper } from './styles';
 
-
 type Props = {
   modalOpen: boolean;
 };

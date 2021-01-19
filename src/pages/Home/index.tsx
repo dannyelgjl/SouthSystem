@@ -16,20 +16,9 @@ import { BookList, Form, Container } from './styles'
 import logo from '../../assets/logo/SouthSystemLogo.jpg';
 // Toast
 import { toast } from 'react-toastify';
+// Interfaces
+import { IBookVolumeInfo } from '../../interfaces/interface';
 
-
-export interface IBookVolumeInfo {
-  id: string;
-  volumeInfo: IImageLinks;
-}
-
-interface IImageLinks {
-  title: string;
-  imageLinks: {
-    thumbnail: string;
-  }
-  authors: [];
-}
 
 const Home: React.FC = () => {
   const { setBookModal } = useBookModal();

@@ -1,21 +1,6 @@
 import React, { useState, useCallback, createContext, useContext } from 'react';
-
-interface IBookVolumeInfo {
-  id: string;
-  volumeInfo: IImageLinks;
-}
-
-interface IImageLinks {
-  title: string;
-  description: string;
-  publisher: string;
-  pageCount: string;
-  language: string;
-  imageLinks: {
-    thumbnail: string;
-  }
-  authors: [];
-}
+//Interfaces
+import { IBookVolumeInfo } from '../interfaces/interface';
 
 interface BookContext {
   book?: IBookVolumeInfo;

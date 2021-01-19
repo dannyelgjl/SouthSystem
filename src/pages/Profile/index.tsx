@@ -9,20 +9,10 @@ import { SiInstagram } from 'react-icons/si';
 // Estilização dos Componentes
 import { Repositories, RepositoryInfo, Container } from './styles';
 // imagem
-import me from '../../assets/images/me.jpg'
+import me from '../../assets/images/me.jpg';
+// Interfaces
+import { IRepository } from '../../interfaces/interface';
 
-interface IRepository {
-  full_name: string;
-  html_url: string;
-  description: string;
-  stargazers_count: number;
-  forks_count: number;
-  open_issues_count: number;
-  owner: {
-    login: string;
-    avatar_url: string;
-  }
-}
 
 const Profile: React.FC<IRepository> = () => {
 

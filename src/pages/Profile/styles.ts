@@ -1,10 +1,10 @@
 import styled from 'styled-components';
-
+import { shade } from 'polished';
 
 export const Container = styled.div`
   display: flex;
   align-items: center;
-  flex-direction: column
+  flex-direction: column;
 `;
 
 export const RepositoryInfo = styled.section`
@@ -12,10 +12,34 @@ export const RepositoryInfo = styled.section`
   header {
     display: flex;
     align-items: center;
+
+    strong {
+      transition: color 0.2s;
+    
+      &:hover {
+        color: ${shade(0.2, '#fe6e00')};
+      }
+    }
+
+    a {
+      color: #fff;
+      transition: transform 0.5s;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+
     img {
       width: 120px;
       height: 120px;
       border-radius: 50%;
+      border: 2px solid #fe6e00;
+      transition: transform 0.5s;
+
+      &:hover {
+        transform: scale(1.1);
+      }
     }
     div {
       margin-left: 24px;
@@ -26,10 +50,17 @@ export const RepositoryInfo = styled.section`
       h2 {
         color: #fff;
         margin-top: 8px;
+        transition: color 0.2s;
+    
+        &:hover {
+          color: ${shade(0.2, '#fe6e00')};
+        }
+
         a {
         svg {
           margin-left: 10px;
           transition: transform 0.5s;
+          
           &:hover {
             transform: scale(1.3);
           }
@@ -39,7 +70,12 @@ export const RepositoryInfo = styled.section`
       p {
         font-size: 18px;
         color: #737380;
-        margin-top: 4px
+        margin-top: 4px;
+        transition: color 0.2s;
+    
+        &:hover {
+          color: ${shade(0.2, '#fe6e00')};
+        }
       }
     }
   }
@@ -47,9 +83,10 @@ export const RepositoryInfo = styled.section`
     display: flex;
     list-style: none;
     margin-top: 40px;
+
     li {
       & + li {
-        margin-left: 80px
+        margin-left: 80px;
       }
       strong {
         display: block;
@@ -65,12 +102,12 @@ export const RepositoryInfo = styled.section`
   }
 `;
 
-
 export const Repositories = styled.div`
   margin-top: 80px;
   margin-bottom: 20px;
   width: 600px;
   max-width: 700px;
+  
   h1 {
     color: #fff;
     margin-bottom: 10px;

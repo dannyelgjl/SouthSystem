@@ -1,13 +1,14 @@
 import React from 'react';
 
-import { Pages } from './styles';
+import { Pages, Container } from './styles';
 
 interface IProps {
   postsPerPage: number;
   totalPosts: number;
+  paginate: (params: number) => void;
 }
 
-const Pagination: React.FC<IProps> = ({ postsPerPage, totalPosts }) => {
+const Pagination: React.FC<IProps> = ({ postsPerPage, totalPosts, paginate }) => {
   const pageNumbers = [];
 
   for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
@@ -15,17 +16,17 @@ const Pagination: React.FC<IProps> = ({ postsPerPage, totalPosts }) => {
   }
 
   return (
-    <nav>
+    <Container>
       <Pages className="pagination">
         {pageNumbers.map(number => (
           <li key={number}>
-            <a href="!#" className="page-link">
+            <button onClick={() => paginate(number)} >
               {number}
-            </a>
+            </button>
           </li>
         ))}
       </Pages>
-    </nav>
+    </Container>
   )
 }
 

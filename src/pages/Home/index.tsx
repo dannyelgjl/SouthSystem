@@ -36,19 +36,18 @@ const Home: React.FC = () => {
 
   const [textFilter, setTextFilter] = useState("");
   const [books, setBooks] = useState<IBookVolumeInfo[]>([]);
-  const [maxResults, setMaxResults] = useState('1');
-  const [startIndex, setStartIndex] = useState('5');
   const [modalOpen, setModalOpen] = useState(false);
 
+  const [inputError, setInputError] = useState('');
   const [loading, setLoading] = useState(false);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage, setPostsPerPage] = useState(2);
+  const [postsPerPage, setPostsPerPage] = useState(6);
 
   useEffect(() => {
     const renderBooksDefault = async () => {
       setLoading(true);
-      const res = await api.get('volumes?q=flowers&filter=free-ebooks&key=AIzaSyBztfyfAcTV_yfZX951VfCMoIDmQ7Cb5Ec');
+      const res = await api.get('volumes?q=flowers&filter=free-ebooks&key=AIzaSyBztfyfAcTV_yfZX951VfCMoIDmQ7Cb5Ec&maxResults=40');
       setBooks(res.data.items);
       setLoading(false);
     }
@@ -60,31 +59,28 @@ const Home: React.FC = () => {
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = books.slice(indexOfFirstPost, indexOfLastPost);
 
+  const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
+
   // Enviando dados do formulário
   const handleSubmit = useCallback(async (event: FormEvent<HTMLFormElement>): Promise<void> => {
     event.preventDefault();
 
-    if (maxResults > '40' || maxResults < '1') {
-      toast.error('max results must be between 1 and 40');
-    } else {
-      api.get(`volumes?q=${textFilter}&key=${process.env.REACT_APP_API_KEY_GOOGLE_BOOK}&maxResults=${startIndex}`)
-        .then(response => {
-          if (startIndex >= response.data.totalItems || startIndex < '1') {
-            toast.error(
-              `Livro ${textFilter} não encontrado`
-            );
-          } else {
-            if (response.data.items.length > '0') {
-              console.log(response.data);
-              setBooks(response.data.items);
-              setTextFilter("");
-            }
-          }
-        }).catch(err => {
-          toast.error('Você não digitou nada no campo de busca...😥')
-        });;
+    if (!textFilter) {
+      setInputError('Digite algum livro no campo de busca...');
+      toast.error('Você não digitou nada no campo de busca...😥');
+
+      return;
     }
-  }, [books, textFilter, maxResults, startIndex]);
+
+    api.get(`volumes?q=${textFilter}&key=${process.env.REACT_APP_API_KEY_GOOGLE_BOOK}&maxResults=40`)
+      .then(response => {
+        setBooks(response.data.items);
+
+        setTextFilter("");
+      }).catch(err => {
+        console.log(err);
+      });
+  }, [books, textFilter]);
 
 
   // Detalhes do livro
@@ -104,25 +100,18 @@ const Home: React.FC = () => {
       <Container>
         <a href="https://southsystem.com.br/" target="_blank"><img src={logo} alt="South System" /></a>
 
-        <Form onSubmit={handleSubmit}>
+        <Form hasError={!!inputError} onSubmit={handleSubmit}>
           <input
             type="text"
             value={textFilter}
             onChange={e => setTextFilter(e.target.value)}
-            placeholder="Busque seus livros..."
-          />
-
-          <input
-            type='number'
-            id='startIndex'
-            placeholder="Quantidade de livros..."
-            value={startIndex}
-            onChange={e => setStartIndex(e.target.value)}
+            placeholder="Busque aqui seus livros favoritos..."
           />
 
           <button type="submit">Buscar</button>
         </Form>
       </ Container >
+      <Pagination postsPerPage={postsPerPage} totalPosts={books.length} paginate={paginate} />
 
       <BookList>
         {currentPosts.map(book => (
@@ -144,7 +133,6 @@ const Home: React.FC = () => {
         ))}
       </BookList>
 
-      <Pagination postsPerPage={postsPerPage} totalPosts={books.length} />
     </>
   )
 }

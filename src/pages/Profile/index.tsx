@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+// Router-dom
+import { Link } from 'react-router-dom';
 // API
 import api from '../../services/api.github';
 // Icons
@@ -51,6 +53,8 @@ const Profile: React.FC<IRepository> = () => {
               <SiInstagram color="#fff" size={24} /></a> </h2>
             <p>Computer science student, I love to develop 👨🏻‍💻🐱‍💻🐱‍👤</p>
           </div>
+
+          <Link to="/"><h3>Voltar</h3></Link>
         </header>
       </RepositoryInfo>
 

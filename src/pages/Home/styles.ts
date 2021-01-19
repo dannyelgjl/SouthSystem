@@ -1,6 +1,10 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { shade } from 'polished';
 import books from '../../assets/images/books.jpg';
+
+interface FormProps {
+  hasError: boolean;
+}
 
 export const Container = styled.div`
   display: flex;
@@ -21,14 +25,15 @@ export const Container = styled.div`
   }
 `;
 
-export const Form = styled.form`
+export const Form = styled.form<FormProps>`
   display: flex;
   align-items: center;
   margin-top: 20px;
   width: 700px;
 
-  > input {
-    width: 400px;
+  input {
+    flex: 1;
+    width: 700px;
     height: 50px;
     border: 0;
     border-radius: 12px 0 0 12px;
@@ -36,16 +41,17 @@ export const Form = styled.form`
     color: #fe6e00;
     border: 2px solid #fff;
     border-right: 0;
+
+    ${(props) => props.hasError && 
+      css`
+        border-color: #c53030;
+      ` }
+
+      &::placeholder {
+      color: #a8a8b3;
+    }
   }
 
-  input {
-      & + input {
-        border-radius: 0;
-        width: 185px;
-        margin-left: 5px;
-      }
-    }
-  
   button {
     width: 80px;
     height: 50px;
@@ -61,6 +67,15 @@ export const Form = styled.form`
     }
   }
 `
+
+export const Error = styled.span`
+  display: block;
+  color: #fff;
+  margin-left: 8px;
+  border-radius: 8px;
+  background-color: #c53030; 
+  padding: 2px;
+`;
 
 export const BookList = styled.ul`
   display: grid;
@@ -140,3 +155,4 @@ export const BookList = styled.ul`
     }
   }
 `
+

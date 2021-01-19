@@ -5,9 +5,11 @@ import api from '../../services/api';
 import { MdAddShoppingCart, MdDelete, MdUpdate } from 'react-icons/md';
 import { BiCommentDetail } from 'react-icons/bi';
 
+import { Link } from 'react-router-dom';
+
 import { useHistory } from 'react-router-dom';
 // Styles
-import { BookList, Form, Container } from './styles'
+import { BookList, Form, Container, Profiler } from './styles'
 // Imagem
 import logo from '../../assets/logo/SouthSystemLogo.jpg';
 
@@ -83,6 +85,10 @@ const Home: React.FC = () => {
       <Modal modalOpen={modalOpen}>
         <ModalContent setModalOpen={setModalOpen} />
       </Modal>
+
+      <Profiler>
+        <Link to="/"><img src="https://avatars1.githubusercontent.com/u/54491980?s=460&u=5457192f7674845b14a107f7791033cfcbabb036&v=4" alt="" /></Link>
+      </Profiler>
 
       <Container>
         <a href="https://southsystem.com.br/" target="_blank"><img src={logo} alt="South System" /></a>

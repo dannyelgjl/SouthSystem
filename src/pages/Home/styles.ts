@@ -4,6 +4,29 @@ import books from '../../assets/images/books.jpg';
 import { darken } from 'polished';
 
 
+
+export const Profiler = styled.div`
+    position: absolute;
+    top: 0;
+    left: 0;
+   
+   
+   a {
+    > img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      border: 2px solid #fe6e00;
+      margin: 8px 0 0 12px;
+      transition: transform 0.5s;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+  }
+`;
+
 export const Container = styled.div`
   display: flex;
   align-items: center;

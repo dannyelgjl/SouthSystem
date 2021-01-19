@@ -3,6 +3,7 @@ import { shade } from 'polished';
 import books from '../../assets/images/books.jpg';
 import { darken } from 'polished';
 
+
 export const Container = styled.div`
   display: flex;
   align-items: center;
@@ -38,6 +39,12 @@ export const Form = styled.form`
     border: 2px solid #fff;
     border-right: 0;
   }
+
+  input {
+      & + input {
+        border-radius: 0;
+      }
+    }
   
   button {
     width: 80px;

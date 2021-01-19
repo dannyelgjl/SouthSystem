@@ -7,6 +7,10 @@ interface IBookVolumeInfo {
 
 interface IImageLinks {
   title: string;
+  description: string;
+  publisher: string;
+  pageCount: string;
+  language: string;
   imageLinks: {
     thumbnail: string;
   }

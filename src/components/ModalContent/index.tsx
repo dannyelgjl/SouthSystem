@@ -10,14 +10,14 @@ const Wrapper = styled.div`
   justify-content: center;
   flex-direction: column;
   background: #fff;
-  width: 800px;
-  height: 800px;
+  width: 1000px;
+  height: 1000px;
   color: #000;
   
   button {
     position: absolute;
-    right: 670px;
-    top: 680px;
+    right: 470px;
+    top: 490px;
   }
 `;
 
@@ -55,6 +55,10 @@ const ModalContent: React.FC<Props> = ({ setModalOpen, books }) => {
           <div className="content-general">
             <h2>Titulo: {book?.volumeInfo.title}</h2>
             <span>Autor: {book?.volumeInfo.authors}</span>
+            <span>Editora: {book?.volumeInfo.publisher}</span>
+            <span>Páginas: {book?.volumeInfo.pageCount}</span>
+            <span>Linguagem: {book?.volumeInfo.language}</span>
+            <h3>Descrição: {book?.volumeInfo.description}</h3>
           </div>
         </Content>
         <button

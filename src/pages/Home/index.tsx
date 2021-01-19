@@ -27,6 +27,8 @@ const Home: React.FC = () => {
   const [books, setBooks] = useState<IBookVolumeInfo[]>([]);
   const [modalOpen, setModalOpen] = useState(false);
 
+  console.log(books);
+
   const [inputError, setInputError] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -35,14 +37,13 @@ const Home: React.FC = () => {
 
   useEffect(() => {
     const renderBooksDefault = async () => {
-      setLoading(true);
-      const res = await api.get('volumes?q=flowers&filter=free-ebooks&key=AIzaSyBztfyfAcTV_yfZX951VfCMoIDmQ7Cb5Ec&maxResults=40');
-      setBooks(res.data.items);
-      setLoading(false);
+      const response = await api.get('volumes?q=flowers&filter=free-ebooks&key=AIzaSyBztfyfAcTV_yfZX951VfCMoIDmQ7Cb5Ec&maxResults=40');
+      setBooks(response.data.items);
+      console.log(response);
     }
 
     renderBooksDefault();
-  }, []);
+  }, [books, textFilter]);
 
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;

@@ -4,19 +4,24 @@ import api from '../../services/api';
 // Icons
 import { MdAddShoppingCart, MdDelete, MdUpdate } from 'react-icons/md';
 import { BiCommentDetail } from 'react-icons/bi';
+
+import { useHistory } from 'react-router-dom';
 // Styles
 import { BookList, Form, Container } from './styles'
 // Imagem
-import logo from '../../assets/logo/SouthSystemLogo.jpg'
+import logo from '../../assets/logo/SouthSystemLogo.jpg';
+
+import Modal from '../../components/Modal';
+import ModalContent from '../../components/ModalContent';
+import { useBookModal } from '../../context/BookContext';
 
 interface IBookVolumeInfo {
   id: string;
-  title: string;
   volumeInfo: IImageLinks;
-
 }
 
 interface IImageLinks {
+  title: string;
   imageLinks: {
     thumbnail: string;
   }
@@ -25,8 +30,15 @@ interface IImageLinks {
 
 const Home: React.FC = () => {
   // Estados 
+
+  const { setBookModal } = useBookModal();
+
   const [book, setBook] = useState("");
+
   const [result, setResults] = useState<IBookVolumeInfo[]>([]);
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const history = useHistory();
 
   // Enviando dados do formulário
   const handleSubmit = useCallback(async (event: FormEvent<HTMLFormElement>): Promise<void> => {
@@ -41,8 +53,18 @@ const Home: React.FC = () => {
 
   }, [book, result]);
 
+  const detailBook = useCallback((book) => {
+    setBookModal(book);
+
+    setModalOpen(true);
+  }, []);
+
   return (
     <>
+      <Modal modalOpen={modalOpen}>
+        <ModalContent setModalOpen={setModalOpen} />
+      </Modal>
+
       <Container>
         <a href="https://southsystem.com.br/" target="_blank"><img src={logo} alt="South System" /></a>
 
@@ -56,17 +78,19 @@ const Home: React.FC = () => {
           <button type="submit">Buscar</button>
         </Form>
       </ Container >
+
+
       <BookList>
         {result.map(book => (
           <li key={book.id}>
             <div className="container-card-book">
               <div className="image-card-book">
-                <img src={book.volumeInfo.imageLinks.thumbnail} alt={book.title} />
+                <img src={book.volumeInfo.imageLinks.thumbnail} alt={book.volumeInfo.title} />
                 <span>AUTOR: {book.volumeInfo.authors}</span>
               </div>
             </div>
 
-            <button type="button" onClick={() => { }}>
+            <button type="button" onClick={() => detailBook(book)}>
               <div>
                 <BiCommentDetail size={16} color="#FFF" />
               </div>

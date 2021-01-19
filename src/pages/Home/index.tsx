@@ -87,7 +87,8 @@ const Home: React.FC = () => {
       </Modal>
 
       <Profiler>
-        <Link to="/"><img src="https://avatars1.githubusercontent.com/u/54491980?s=460&u=5457192f7674845b14a107f7791033cfcbabb036&v=4" alt="" /></Link>
+        <Link to="/"><img src="https://avatars1.githubusercontent.com/u/54491980?s=460&u=5457192f7674845b14a107f7791033cfcbabb036&v=4" alt="" /><span>Perfil</span></Link>
+
       </Profiler>
 
       <Container>

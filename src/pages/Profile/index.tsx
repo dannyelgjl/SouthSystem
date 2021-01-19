@@ -6,15 +6,8 @@ import { FiChevronRight } from 'react-icons/fi';
 import { SiInstagram } from 'react-icons/si';
 // Estilização dos Componentes
 import { Repositories, RepositoryInfo, Container } from './styles';
-
+// imagem
 import me from '../../assets/images/me.jpg'
-
-interface IGitProfile {
-  avatar_url: string;
-  name: string;
-  blog: string;
-  bio: string;
-}
 
 interface IRepository {
   full_name: string;
@@ -29,10 +22,9 @@ interface IRepository {
   }
 }
 
-const Profile: React.FC<IGitProfile> = () => {
-  // Estados
+const Profile: React.FC<IRepository> = () => {
+
   const [repositories, setRepositories] = useState<IRepository[]>([]);
-  const [myUser, setMyUser] = useState<IGitProfile[]>([]);
 
   // Carregando dados dos Repositórios
   useEffect(() => {
@@ -45,20 +37,7 @@ const Profile: React.FC<IGitProfile> = () => {
     }
 
     loadRepositories();
-  }, []);
-
-  // Carregando dados do meu Perfil
-  useEffect(() => {
-    async function loadRepositories() {
-      const response = await api.get('/users/dannyelgjl');
-
-      const request = response.data;
-
-      setMyUser(request);
-    }
-
-    loadRepositories();
-  }, []);
+  }, [repositories]);
 
   return (
     <Container>
@@ -68,7 +47,8 @@ const Profile: React.FC<IGitProfile> = () => {
             src={me} alt="{repository.owner.login}" />
           <div>
             <strong>Daniel Jerônimo</strong>
-            <h2>João Pessoa, PB - Brasil<a href="https://github.com/dannyelgjl" target="_blank" ><SiInstagram color="#fff" size={24} /></a> </h2>
+            <h2>João Pessoa, PB - Brasil<a href="https://www.instagram.com/danieljeronimo_/" target="_blank" >
+              <SiInstagram color="#fff" size={24} /></a> </h2>
             <p>Computer science student, I love to develop 👨🏻‍💻🐱‍💻🐱‍👤</p>
           </div>
         </header>

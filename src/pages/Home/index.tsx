@@ -1,23 +1,21 @@
 import React, { useEffect, useState, useCallback, FormEvent } from 'react';
+// Componentes
+import Modal from '../../components/Modal';
+import ModalContent from '../../components/ModalContent';
+import Profile from '../../components/Profile';
+// Context
+import { useBookModal } from '../../context/BookContext';
 // Api service
 import api from '../../services/api';
 // Icons
-import { MdAddShoppingCart, MdDelete, MdUpdate } from 'react-icons/md';
 import { BiCommentDetail } from 'react-icons/bi';
-
-import { Link } from 'react-router-dom';
-
-import { useHistory } from 'react-router-dom';
 // Styles
-import { BookList, Form, Container, Profile } from './styles'
+import { BookList, Form, Container } from './styles'
 // Imagem
 import logo from '../../assets/logo/SouthSystemLogo.jpg';
-
-import Modal from '../../components/Modal';
-import ModalContent from '../../components/ModalContent';
-import { useBookModal } from '../../context/BookContext';
-
+// Toast
 import { toast } from 'react-toastify';
+
 
 interface IBookVolumeInfo {
   id: string;
@@ -33,19 +31,14 @@ interface IImageLinks {
 }
 
 const Home: React.FC = () => {
-  // Estados 
-
   const { setBookModal } = useBookModal();
 
   const [book, setBook] = useState("");
   const [result, setResults] = useState<IBookVolumeInfo[]>([]);
-
   const [maxResults, setMaxResults] = useState('1');
-  const [startIndex, setStartIndex] = useState('-');
-
+  const [startIndex, setStartIndex] = useState('5');
   const [modalOpen, setModalOpen] = useState(false);
 
-  const history = useHistory();
 
   // Enviando dados do formulário
   const handleSubmit = useCallback(async (event: FormEvent<HTMLFormElement>): Promise<void> => {
@@ -68,12 +61,13 @@ const Home: React.FC = () => {
             }
           }
         }).catch(err => {
-          // setLoading(true);
-          console.log(err.response);
+          toast.error('error')
         });;
     }
   }, [book, result, maxResults, startIndex]);
 
+
+  // Detalhes do livro
   const detailBook = useCallback((book) => {
     setBookModal(book);
 
@@ -85,11 +79,7 @@ const Home: React.FC = () => {
       <Modal modalOpen={modalOpen}>
         <ModalContent setModalOpen={setModalOpen} />
       </Modal>
-
-      <Profile>
-        <Link to="/profile"><img src="https://avatars1.githubusercontent.com/u/54491980?s=460&u=5457192f7674845b14a107f7791033cfcbabb036&v=4" alt="" /><span>Perfil</span></Link>
-
-      </Profile>
+      <Profile />
 
       <Container>
         <a href="https://southsystem.com.br/" target="_blank"><img src={logo} alt="South System" /></a>
@@ -113,7 +103,6 @@ const Home: React.FC = () => {
           <button type="submit">Buscar</button>
         </Form>
       </ Container >
-
 
       <BookList>
         {result.map(book => (

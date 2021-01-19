@@ -1,10 +1,12 @@
 import React from 'react';
+// Router-dom
 import { Switch, Route } from 'react-router-dom';
-
+// Context
+import { BookProvider } from '../context/BookContext';
+// Componentes
 import Home from '../pages/Home';
 import Profile from '../pages/Profile';
 
-import { BookProvider } from '../context/BookContext';
 
 const Routes: React.FC = () => (
   <Switch>

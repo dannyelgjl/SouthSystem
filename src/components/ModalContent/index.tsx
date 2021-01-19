@@ -1,6 +1,7 @@
 import React from 'react';
+// Context
 import { useBookModal } from '../../context/BookContext';
-
+// Estilos
 import { Content, Wrapper } from './styles';
 
 interface IBookVolumeInfo {
@@ -23,8 +24,6 @@ type Props = {
 
 const ModalContent: React.FC<Props> = ({ setModalOpen, books }) => {
   const { book } = useBookModal()
-
-  console.log(book);
 
   return (
     <div className='nes-container is-dark with-title is-centered'>

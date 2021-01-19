@@ -1,15 +1,14 @@
 import React from 'react';
-// Componentes
-import Header from './components/Header';
-import Home from './pages/Home';
+// Router-dom
+import { BrowserRouter } from 'react-router-dom';
+// Routes
+import Routes from './routes/routes';
 // Estilo Global
 import GlobalStyle from './styles/global';
-
+// Toast
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import { BrowserRouter } from 'react-router-dom';
-import Routes from './routes/routes';
 
 const App: React.FC = () => {
   return (

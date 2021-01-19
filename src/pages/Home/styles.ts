@@ -5,7 +5,7 @@ import { darken } from 'polished';
 
 
 
-export const Profiler = styled.div`
+export const Profile = styled.div`
     position: absolute;
     top: 0;
     left: 0;

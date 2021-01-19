@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 
 import { useHistory } from 'react-router-dom';
 // Styles
-import { BookList, Form, Container, Profiler } from './styles'
+import { BookList, Form, Container, Profile } from './styles'
 // Imagem
 import logo from '../../assets/logo/SouthSystemLogo.jpg';
 
@@ -86,10 +86,10 @@ const Home: React.FC = () => {
         <ModalContent setModalOpen={setModalOpen} />
       </Modal>
 
-      <Profiler>
-        <Link to="/"><img src="https://avatars1.githubusercontent.com/u/54491980?s=460&u=5457192f7674845b14a107f7791033cfcbabb036&v=4" alt="" /><span>Perfil</span></Link>
+      <Profile>
+        <Link to="/profile"><img src="https://avatars1.githubusercontent.com/u/54491980?s=460&u=5457192f7674845b14a107f7791033cfcbabb036&v=4" alt="" /><span>Perfil</span></Link>
 
-      </Profiler>
+      </Profile>
 
       <Container>
         <a href="https://southsystem.com.br/" target="_blank"><img src={logo} alt="South System" /></a>

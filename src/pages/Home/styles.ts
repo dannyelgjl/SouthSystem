@@ -30,8 +30,7 @@ export const Form = styled.form`
   width: 700px;
 
   > input {
-    flex: 1;
-    width: 200px;
+    width: 400px;
     height: 50px;
     border: 0;
     border-radius: 5px 0 0 5px;
@@ -43,6 +42,8 @@ export const Form = styled.form`
   input {
       & + input {
         border-radius: 0;
+        width: 185px;
+        margin-left: 5px;
       }
     }
   

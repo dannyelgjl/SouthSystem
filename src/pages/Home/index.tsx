@@ -39,7 +39,7 @@ const Home: React.FC = () => {
   const [result, setResults] = useState<IBookVolumeInfo[]>([]);
 
   const [maxResults, setMaxResults] = useState('1');
-  const [startIndex, setStartIndex] = useState('6');
+  const [startIndex, setStartIndex] = useState('-');
 
   const [modalOpen, setModalOpen] = useState(false);
 
@@ -56,7 +56,7 @@ const Home: React.FC = () => {
         .then(response => {
           if (startIndex >= response.data.totalItems || startIndex < '1') {
             toast.error(
-              `max reults must be between 1 and ${response.data.totalItems}`
+              `Livro ${book} não encontrado`
             );
           } else {
             if (response.data.items.length > '0') {
@@ -70,8 +70,6 @@ const Home: React.FC = () => {
           console.log(err.response);
         });;
     }
-
-
   }, [book, result, maxResults, startIndex]);
 
   const detailBook = useCallback((book) => {
@@ -100,7 +98,7 @@ const Home: React.FC = () => {
           <input
             type='number'
             id='startIndex'
-            placeholder='Quantidade de livros...'
+            placeholder="Quantidade de livros..."
             value={startIndex}
             onChange={e => setStartIndex(e.target.value)}
           />

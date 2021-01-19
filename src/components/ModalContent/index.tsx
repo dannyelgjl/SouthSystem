@@ -1,25 +1,7 @@
 import React from 'react';
-import styled from 'styled-components';
 import { useBookModal } from '../../context/BookContext';
 
-import { Content } from './styles';
-
-const Wrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  background: #fff;
-  width: 1000px;
-  height: 1000px;
-  color: #000;
-  
-  button {
-    position: absolute;
-    right: 470px;
-    top: 490px;
-  }
-`;
+import { Content, Wrapper } from './styles';
 
 interface IBookVolumeInfo {
   id: string;
@@ -53,7 +35,7 @@ const ModalContent: React.FC<Props> = ({ setModalOpen, books }) => {
           </div>
 
           <div className="content-general">
-            <h2>Titulo: {book?.volumeInfo.title}</h2>
+            <h2>{book?.volumeInfo.title}</h2>
             <span>Autor: {book?.volumeInfo.authors}</span>
             <span>Editora: {book?.volumeInfo.publisher}</span>
             <span>Páginas: {book?.volumeInfo.pageCount}</span>

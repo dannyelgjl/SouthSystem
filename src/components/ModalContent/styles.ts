@@ -16,6 +16,11 @@ export const Wrapper = styled.div`
     right: 380px;
     top: 720px;
     border: 0;
+    width: 35px;
+    height: 35px;
+    border-radius: 50px;
+    background: #fe6e00; 
+    color: #fff;
     transition: transform 0.5s;
     
     &:hover {

@@ -45,7 +45,7 @@ const ModalContent: React.FC<Props> = ({ setModalOpen, books }) => {
         </Content>
         <button
           type='button'
-          className='nes-btn is-success'
+          className='close-button'
           onClick={() => setModalOpen(false)}
         >
           <span>X</span>

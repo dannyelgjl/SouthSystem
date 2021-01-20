@@ -110,6 +110,11 @@ export const QuantityFavorites = styled.div`
 
   a {
     margin-left: 8px;
+    transition: transform 0.5s;
+
+      &:hover {
+        transform: scale(1.1);
+      }
   }
 `;
 

@@ -5,7 +5,7 @@ Projeto desenvolvido para SouthSystem 😁
 ## Web
 
 <h1 align="center">
-  <img src="/readme-assets/Component1.PNG" width="600"/>
+  <img src="/readme-assets/Component1.png" width="600"/>
 </h1>
 
 ### `Startando a aplicação`

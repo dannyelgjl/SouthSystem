@@ -7,7 +7,12 @@ interface FormProps {
 }
 
 const media = {
-  logo: "@media(max-width: 411px)"
+  cards5: "@media(max-width: 1832px)",
+  cards4: "@media(max-width: 1532px)",
+  cards3: "@media(max-width: 1241px)",
+  cards2: "@media(max-width: 935px)",
+  cards1: "@media(max-width: 629px)",
+  logo: "@media(max-width: 411px)",
 }
 
 const input = {
@@ -103,7 +108,24 @@ export const BookList = styled.ul`
   margin: 80px 0 50px 40px;
   width: 150px;
   padding: 10px;
-  
+
+  ${media.cards5} {
+    grid-template-columns: repeat(5, 1fr);
+  } 
+
+  ${media.cards4} {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  ${media.cards3} {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  ${media.cards2} {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  ${media.cards1} {
+    grid-template-columns: repeat(1, 1fr);
+  }
 
   li {
     display: flex;
@@ -111,6 +133,7 @@ export const BookList = styled.ul`
     background: #232129;
     border-radius: 4px;
     padding: 20px;
+
 
     .container-card-book {
       flex-direction: row;

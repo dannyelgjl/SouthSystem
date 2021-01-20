@@ -44,7 +44,7 @@ const Home: React.FC = () => {
     }
 
     renderBooksDefault();
-  }, [books, textFilter]);
+  }, []);
 
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
@@ -66,7 +66,7 @@ const Home: React.FC = () => {
       }).catch(err => {
         console.log(err);
       });
-  }, [books, textFilter]);
+  }, []);
 
 
   // Detalhes do livro

@@ -1,14 +1,33 @@
 import styled from 'styled-components';
 import { shade } from 'polished';
 
+
+
+const media = {
+  repository: "@media(max-width: 608px)",
+  repositoryMobile: "@media(max-width: 462px)",
+  repositoryLittle: "@media(max-width: 280px)",
+}
+
+
 export const Container = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
+  padding: 4px;
 `;
 
 export const RepositoryInfo = styled.section`
   margin-top: 80px;
+
+  ${media.repositoryMobile} {
+    padding: 0 20px 0 80px;
+  }
+
+  ${media.repositoryLittle} {
+    margin-left: 40px
+  }
+
   header {
     display: flex;
     align-items: center;
@@ -107,6 +126,20 @@ export const Repositories = styled.div`
   margin-bottom: 20px;
   width: 600px;
   max-width: 700px;
+
+  ${media.repository} {
+    width: 460px
+  } 
+
+  ${media.repositoryMobile} {
+    width: 340px;
+    margin-left: 60px
+  } 
+
+  ${media.repositoryLittle} {
+    margin-left: 120px
+  }
+
   
   h1 {
     color: #fff;
@@ -131,7 +164,7 @@ export const Repositories = styled.div`
     img {
       width: 64px;
       height: 64px;
-      border-radius: 50%;
+      border-radius: 50%; 
     }
     div {
       margin-left: 16px;

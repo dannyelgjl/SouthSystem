@@ -26,28 +26,25 @@ const Home: React.FC = () => {
   const [textFilter, setTextFilter] = useState("");
   const [books, setBooks] = useState<IBookVolumeInfo[]>([]);
   const [modalOpen, setModalOpen] = useState(false);
-
-  console.log(books);
-
   const [inputError, setInputError] = useState('');
   const [loading, setLoading] = useState(false);
-
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage, setPostsPerPage] = useState(6);
 
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = books.slice(indexOfFirstPost, indexOfLastPost);
+
+
   useEffect(() => {
     const renderBooksDefault = async () => {
-      const response = await api.get('volumes?q=flowers&filter=free-ebooks&key=AIzaSyBztfyfAcTV_yfZX951VfCMoIDmQ7Cb5Ec&maxResults=40');
+      const response = await api.get(`volumes?q=flowers&filter=free-ebooks&key=${process.env.REACT_APP_API_KEY_GOOGLE_BOOK}&maxResults=40`);
       setBooks(response.data.items);
       console.log(response);
     }
 
     renderBooksDefault();
   }, [books, textFilter]);
-
-  const indexOfLastPost = currentPage * postsPerPage;
-  const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = books.slice(indexOfFirstPost, indexOfLastPost);
 
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
@@ -56,7 +53,6 @@ const Home: React.FC = () => {
     event.preventDefault();
 
     if (!textFilter) {
-      setInputError('Digite algum livro no campo de busca...');
       toast.error('Você não digitou nada no campo de busca...😥');
 
       return;

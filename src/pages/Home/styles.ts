@@ -6,11 +6,18 @@ interface FormProps {
   hasError: boolean;
 }
 
+const media = {
+  logo: "@media(max-width: 411px)"
+}
+
+const input = {
+  input: "@media(max-width: 280px)"
+}
+
 export const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-
   background: url(${books}) no-repeat center;
   height: 600px;
   width: 100%;
@@ -21,6 +28,10 @@ export const Container = styled.div`
       height: 80px;
       margin-right: 10px;
       border-radius: 50%;
+
+      ${media.logo} {
+        display: none;
+      } 
     }
   }
 `;
@@ -29,18 +40,23 @@ export const Form = styled.form<FormProps>`
   display: flex;
   align-items: center;
   margin-top: 20px;
-  width: 700px;
+  width: 600px;
+  padding: 6px;
 
   input {
     flex: 1;
-    width: 700px;
     height: 50px;
+    max-width: 700px;
     border: 0;
     border-radius: 12px 0 0 12px;
     padding: 10px;
     color: #fe6e00;
     border: 2px solid #fff;
     border-right: 0;
+
+    ${input.input} {
+        width: 100px;
+      } 
 
     ${(props) => props.hasError && 
       css`
@@ -50,6 +66,8 @@ export const Form = styled.form<FormProps>`
       &::placeholder {
       color: #a8a8b3;
     }
+
+   
   }
 
   button {
@@ -85,6 +103,7 @@ export const BookList = styled.ul`
   margin: 80px 0 50px 40px;
   width: 150px;
   padding: 10px;
+  
 
   li {
     display: flex;
@@ -153,6 +172,9 @@ export const BookList = styled.ul`
         font-weight: bold;
       }
     }
+
+ 
   }
 `
+
 

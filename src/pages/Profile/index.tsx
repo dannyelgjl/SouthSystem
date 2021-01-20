@@ -39,7 +39,7 @@ const Profile: React.FC<IRepository> = () => {
             src={me} alt="{repository.owner.login}" />
           <div>
             <strong>Daniel Jerônimo</strong>
-            <h2>João Pessoa, PB - Brasil<a href="https://www.instagram.com/danieljeronimo_/" target="_blank" >
+            <h2>João Pessoa, PB - Brasil<a href="https://www.instagram.com/danieljeronimo_/" rel="noreferrer" target="_blank" >
               <SiInstagram color="#fff" size={24} /></a> </h2>
             <p>Computer science student, I love to develop 👨🏻‍💻🐱‍💻🐱‍👤</p>
           </div>
@@ -51,7 +51,7 @@ const Profile: React.FC<IRepository> = () => {
       <Repositories>
         <h1>Meus Repositórios 🐱‍🏍🐱‍💻🚀🐱‍👤</h1>
         {repositories.map(repository => (
-          <a key={repository.full_name} target="_blank" href={repository.html_url}>
+          <a key={repository.full_name} target="_blank" rel="noreferrer" href={repository.html_url}>
             <img src={repository.owner.avatar_url} alt="" />
             <div>
               <strong>{repository.full_name}</strong>

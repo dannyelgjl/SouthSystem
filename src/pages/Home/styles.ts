@@ -10,6 +10,7 @@ const media = {
   cards2: "@media(max-width: 935px)",
   cards1: "@media(max-width: 629px)",
   littleCards: "@media(max-width: 320px)",
+  littleCards1: "@media(max-width: 280px)",
   logo: "@media(max-width: 411px)",
 }
 
@@ -25,7 +26,7 @@ export const Container = styled.div`
   height: 600px;
   width: 100%;
 
-  a {
+  > a {
     > img {
       width: 80px;
       height: 80px;
@@ -91,6 +92,7 @@ export const QuantityFavorites = styled.div`
   display: flex;
   justify-content: center;
   text-align: center;
+  margin-top: 20px;
 
   h3 {
     background-color: #fe6e00;
@@ -139,6 +141,10 @@ export const BookList = styled.ul`
     ${media.littleCards} {
       width: 250px;
     }
+
+    ${media.littleCards} {
+      width: 220px;
+    }
     
     .container-card-book {
       flex-direction: row;
@@ -161,6 +167,11 @@ export const BookList = styled.ul`
           ${media.littleCards} {
             width: 180px;
             height: 240px;
+          }
+
+          ${media.littleCards} {
+            width: 160px;
+            height: 200px;
           }
         }
 

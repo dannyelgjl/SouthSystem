@@ -5,7 +5,7 @@ import { AiOutlineCloseCircle } from 'react-icons/ai';
 // Interfaces
 import { IBookVolumeInfo } from '../../interfaces/interface';
 // Estilos
-import { Content, Container, ButtonModal } from './styles';
+import { Content, Container, ButtonModal, ContentGeneral } from './styles';
 
 
 type Props = {
@@ -29,14 +29,16 @@ const ModalJv: React.FC<Props> = ({ book }) => {
             <img src={book.volumeInfo.imageLinks.thumbnail} alt="" />
           </div>
 
-          <div className="content-general">
+          <ContentGeneral >
             <h2>{book?.volumeInfo.title}</h2>
             <span>Autor: {book?.volumeInfo.authors}</span>
             <span>Editora: {book?.volumeInfo.publisher}</span>
             <span>Páginas: {book?.volumeInfo.pageCount}</span>
             <span>Linguagem: {book?.volumeInfo.language}</span>
             <h3>Descrição: {book?.volumeInfo.description}</h3>
-          </div>
+            <a href={`${book?.volumeInfo.infoLink}`} target="_blank" rel="noreferrer">Detalhes do livro</a>
+            <a href={`${book?.volumeInfo.previewLink}`} target="_blank" rel="noreferrer">Ler o livro</a>
+          </ContentGeneral>
           <ButtonModal
             type='button'
             className='close-button'

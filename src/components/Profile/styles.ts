@@ -5,7 +5,7 @@ export const ProfileStyling = styled.div`
     top: 0;
     left: 0;
    
-   a {  
+   > a {  
      display: flex;
      align-items: center;
      justify-content: center;

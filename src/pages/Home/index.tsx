@@ -65,8 +65,8 @@ const Home: React.FC = () => {
 
   return (
     <>
+      <Profile />
       <Container>
-        <Profile />
         <a href="https://southsystem.com.br/" target="_blank" rel="noreferrer">
           <img src={logo} alt="South System" />
         </a>

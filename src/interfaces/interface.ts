@@ -12,6 +12,8 @@ interface IImageLinks {
   imageLinks: {
     thumbnail: string;
   }
+  infoLink: string;
+  previewLink: string;
   authors: [];
 }
 

@@ -2,7 +2,7 @@ import React from 'react';
 // Router-dom
 import { Switch, Route } from 'react-router-dom';
 // Context
-import { BookProvider } from '../context/BookContext';
+import { FavoritesBooksProvider } from '../hooks/FavoritesBooks';
 // Componentes
 import Home from '../pages/Home';
 import Profile from '../pages/Profile';
@@ -10,10 +10,10 @@ import Profile from '../pages/Profile';
 
 const Routes: React.FC = () => (
   <Switch>
-    <BookProvider>
+    <FavoritesBooksProvider>
       <Route path="/" exact component={Home} />
       <Route path="/profile" component={Profile} />
-    </BookProvider>
+    </FavoritesBooksProvider>
   </Switch>
 )
 

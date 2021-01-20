@@ -4,7 +4,7 @@ import Profile from '../../components/Profile';
 import Pagination from '../../components/Pagination';
 import Modal from '../../components/Modal';
 // Context
-import { useBookModal } from '../../context/BookContext';
+import { useFavoriteBook } from '../../hooks/FavoritesBooks';
 // Api service
 import api from '../../services/api';
 // Icons
@@ -20,6 +20,8 @@ import { IBookVolumeInfo } from '../../interfaces/interface';
 
 
 const Home: React.FC = () => {
+  const { book, setFavorites } = useFavoriteBook();
+
   const [textFilter, setTextFilter] = useState("");
   const [books, setBooks] = useState<IBookVolumeInfo[]>([]);
   const [inputError, setInputError] = useState('');
@@ -81,6 +83,8 @@ const Home: React.FC = () => {
       </ Container >
       <Pagination postsPerPage={postsPerPage} totalPosts={books.length} paginate={paginate} />
 
+      <button>Favoritos <span>{book.length || 0}</span></button>
+
       <BookList>
         {currentPosts.map(book => (
           <li key={book.id}>
@@ -90,12 +94,14 @@ const Home: React.FC = () => {
                 <span>AUTOR: {book.volumeInfo.authors}</span>
               </div>
             </div>
-            <button>
+
+            <button onClick={() => setFavorites(book)}>
               <div>
                 <MdFavorite size={16} color="#fff" />
               </div>
               <span>Favoritar</span>
             </ button>
+
             <Modal book={book} />
           </li>
         ))}

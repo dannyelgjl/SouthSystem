@@ -18,8 +18,8 @@ export const ProfileStyling = styled.div`
       }
 
     > span {
-        color: #fff;
-        background: #fe6e00;
+        color: var(--white);
+        background: var(--orange);
         border-radius: 4px;
         padding: 2px;
         margin-top: 6px;
@@ -29,7 +29,7 @@ export const ProfileStyling = styled.div`
       width: 80px;
       height: 80px;
       border-radius: 50%;
-      border: 2px solid #fe6e00;
+      border: 2px solid var(--orange);
       margin: 8px 0 0 12px;
     }
   }

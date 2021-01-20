@@ -27,7 +27,7 @@ export const Content = styled.div`
   text-align: center;
   padding: 100px 80px 80px 80px;
   border-radius: 12px;
-  background: #fff;
+  background: var(--white);
   width: 70%;
   max-height: 100%;
   max-width: 1000px;
@@ -37,7 +37,7 @@ export const Content = styled.div`
     > img {
       width: 200px;
       height: 250px;
-      border: 1px solid #fe6e00;
+      border: 1px solid var(--orange);
       margin-right: 20px;
       transition: transform 0.5s;
     
@@ -63,7 +63,7 @@ export const ContentGeneral = styled.div`
     padding: 10px;
 
     > a {
-      color: #fff;
+      color: var(--white);
       background-color: green;
       border-radius: 8px;
       padding: 8px;
@@ -84,13 +84,13 @@ export const ContentGeneral = styled.div`
 
     h2 {
       margin-bottom: 10px;
-      color: #fe6e00;
+      color: var(--orange);
     }
     span {
-      background-color: #fe6e00;
+      background-color: var(--orange);
       padding: 4px;
       border-radius: 4px;
-      color: #fff;
+      color: var(--white);
 
       ${media.text1} {
         width: 100px;
@@ -106,8 +106,8 @@ export const ContentGeneral = styled.div`
       margin-top: 10px;
       font-size: 15px;
       padding: 8px 22px 8px 22px;
-      background-color: #fe6e00;
-      color: #fff;
+      background-color: var(--orange);
+      color: var(--white);
       border-radius: 8px;
       text-overflow: ellipsis; 
       overflow: hidden;

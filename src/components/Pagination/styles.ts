@@ -28,8 +28,8 @@ export const Pages = styled.ul`
   
   li {
     button {
-      color: #fff;
-      background: #fe6e00;
+      color: var(--white);
+      background: var(--orange);
       margin-left: 30px;
       border: 0;
       border-radius: 8px;

@@ -52,8 +52,8 @@ export const Form = styled.form`
     border: 0;
     border-radius: 12px 0 0 12px;
     padding: 10px;
-    color: #fe6e00;
-    border: 2px solid #fff;
+    color: var(--orange);
+    border: 2px solid var(--white);
     border-right: 0;
 
     ${media.input} {
@@ -65,9 +65,9 @@ export const Form = styled.form`
     width: 80px;
     height: 50px;
     border-radius: 0 12px 12px 0;
-    background: #fe6e00;
+    background: var(--orange);
     border: 0;
-    color: #fff;
+    color: var(--white);
     font-weight: bold;
     transition: background-color 0.2s;
     
@@ -79,7 +79,7 @@ export const Form = styled.form`
 
 export const Error = styled.span`
   display: block;
-  color: #fff;
+  color: var(--white);
   margin-left: 8px;
   border-radius: 8px;
   background-color: #c53030; 
@@ -97,11 +97,11 @@ export const QuantityFavorites = styled.div`
   } 
 
   h3 {
-    background-color: #fe6e00;
+    background-color: var(--orange);
     max-width: 230px;
     border-radius: 8px;
     padding: 8px;
-    color: #fff;
+    color: var(--white);
 
     & + h3 {
       margin-left: 5px;
@@ -166,7 +166,7 @@ export const BookList = styled.ul`
           width: 220px;
           height: 280px;
           border-radius: 4PX;
-          border: 1px solid #fe6e00;
+          border: 1px solid var(--orange);
           margin: 30px 10px 10px;
           object-fit: cover;
 
@@ -185,15 +185,15 @@ export const BookList = styled.ul`
           margin-top: 15px;
           font-size: 18px;
           font-weight: bold;
-          color: #fff;
+          color: var(--white);
           min-height: 100px;
         }
       }
     }
 
    > button {
-      background: #fe6e00;
-      color: #fff;
+      background: var(--orange);
+      color: var(--white);
       border: 0;
       border-radius: 4px;
       overflow: hidden;

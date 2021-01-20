@@ -41,7 +41,7 @@ export const RepositoryInfo = styled.section`
     }
 
     a {
-      color: #fff;
+      color: var(--white);
       transition: transform 0.5s;
 
       &:hover {
@@ -53,7 +53,7 @@ export const RepositoryInfo = styled.section`
       width: 120px;
       height: 120px;
       border-radius: 50%;
-      border: 2px solid #fe6e00;
+      border: 2px solid var(--orange);
       transition: transform 0.5s;
 
       &:hover {
@@ -64,10 +64,10 @@ export const RepositoryInfo = styled.section`
       margin-left: 24px;
       strong {
         font-size: 36px;
-        color: #fff
+        color: var(--white)
       }
       h2 {
-        color: #fff;
+        color: var(--white);
         margin-top: 8px;
         transition: color 0.2s;
     
@@ -142,11 +142,11 @@ export const Repositories = styled.div`
 
   
   h1 {
-    color: #fff;
+    color: var(--white);
     margin-bottom: 10px;
   }
   a {
-    background: #fff;
+    background: var(--white);
     border-radius: 5px;
     width: 100%;
     padding: 24px;

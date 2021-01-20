@@ -41,6 +41,12 @@ export default createGlobalStyle`
   }
 
   &::-webkit-scrollbar-thumb {
-    background: #fe6e00;
+    background: var(--orange) ;
+  }
+
+  :root {
+    --orange: #fe6e00;
+    --white: #fff;
   }
 `
+

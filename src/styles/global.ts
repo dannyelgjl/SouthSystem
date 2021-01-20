@@ -35,4 +35,12 @@ export default createGlobalStyle`
   button {
     cursor: pointer;
   }
+
+  &::-webkit-scrollbar {
+    width: 0.25rem;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #fe6e00;
+  }
 `

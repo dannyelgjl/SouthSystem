@@ -1,15 +1,14 @@
 import React, { useEffect, useState, useCallback, FormEvent } from 'react';
 // Componentes
-import Modal from '../../components/Modal';
-import ModalContent from '../../components/ModalContent';
 import Profile from '../../components/Profile';
 import Pagination from '../../components/Pagination';
+import Modal from '../../components/Modal';
 // Context
 import { useBookModal } from '../../context/BookContext';
 // Api service
 import api from '../../services/api';
 // Icons
-import { BiCommentDetail } from 'react-icons/bi';
+import { MdFavorite } from 'react-icons/md';
 // Styles
 import { BookList, Form, Container } from './styles'
 // Imagem
@@ -21,16 +20,11 @@ import { IBookVolumeInfo } from '../../interfaces/interface';
 
 
 const Home: React.FC = () => {
-  const { setBookModal } = useBookModal();
-
   const [textFilter, setTextFilter] = useState("");
   const [books, setBooks] = useState<IBookVolumeInfo[]>([]);
-  const [modalOpen, setModalOpen] = useState(false);
   const [inputError, setInputError] = useState('');
-  const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage, setPostsPerPage] = useState(6);
-
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = books.slice(indexOfFirstPost, indexOfLastPost);
@@ -40,7 +34,6 @@ const Home: React.FC = () => {
     const renderBooksDefault = async () => {
       const response = await api.get(`volumes?q=flowers&filter=free-ebooks&key=${process.env.REACT_APP_API_KEY_GOOGLE_BOOK}&maxResults=40`);
       setBooks(response.data.items);
-      console.log(response);
     }
 
     renderBooksDefault();
@@ -66,21 +59,10 @@ const Home: React.FC = () => {
       }).catch(err => {
         console.log(err);
       });
-  }, []);
-
-
-  // Detalhes do livro
-  const detailBook = useCallback((book) => {
-    setBookModal(book);
-
-    setModalOpen(true);
-  }, []);
+  }, [textFilter, books]);
 
   return (
     <>
-      <Modal modalOpen={modalOpen}>
-        <ModalContent setModalOpen={setModalOpen} />
-      </Modal>
       <Profile />
 
       <Container>
@@ -108,17 +90,16 @@ const Home: React.FC = () => {
                 <span>AUTOR: {book.volumeInfo.authors}</span>
               </div>
             </div>
-
-            <button type="button" onClick={() => detailBook(book)}>
+            <button>
               <div>
-                <BiCommentDetail size={16} color="#FFF" />
+                <MdFavorite size={16} color="#fff" />
               </div>
-              <span>Detalhes</span>
-            </button>
+              <span>Favoritar</span>
+            </ button>
+            <Modal book={book} />
           </li>
         ))}
       </BookList>
-
     </>
   )
 }

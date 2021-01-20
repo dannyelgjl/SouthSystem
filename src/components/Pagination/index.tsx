@@ -1,5 +1,5 @@
 import React from 'react';
-
+// Estilos
 import { Pages, Container } from './styles';
 
 interface IProps {

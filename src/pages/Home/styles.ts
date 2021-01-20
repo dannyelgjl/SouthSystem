@@ -12,6 +12,7 @@ const media = {
   cards3: "@media(max-width: 1241px)",
   cards2: "@media(max-width: 935px)",
   cards1: "@media(max-width: 629px)",
+  littleCards: "@media(max-width: 320px)",
   logo: "@media(max-width: 411px)",
 }
 
@@ -71,8 +72,6 @@ export const Form = styled.form<FormProps>`
       &::placeholder {
       color: #a8a8b3;
     }
-
-   
   }
 
   button {
@@ -125,6 +124,7 @@ export const BookList = styled.ul`
   }
   ${media.cards1} {
     grid-template-columns: repeat(1, 1fr);
+    padding: 0 20px 0 0
   }
 
   li {
@@ -134,7 +134,10 @@ export const BookList = styled.ul`
     border-radius: 4px;
     padding: 20px;
 
-
+    ${media.littleCards} {
+      width: 250px;
+    }
+    
     .container-card-book {
       flex-direction: row;
       display: flex;
@@ -152,6 +155,11 @@ export const BookList = styled.ul`
           border: 1px solid #fe6e00;
           margin: 30px 10px 10px;
           object-fit: cover;
+
+          ${media.littleCards} {
+            width: 180px;
+            height: 240px;
+          }
         }
 
         > span {
@@ -164,7 +172,7 @@ export const BookList = styled.ul`
       }
     }
 
-    button {
+   > button {
       background: #fe6e00;
       color: #fff;
       border: 0;
@@ -195,8 +203,6 @@ export const BookList = styled.ul`
         font-weight: bold;
       }
     }
-
- 
   }
 `
 

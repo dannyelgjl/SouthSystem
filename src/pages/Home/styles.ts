@@ -2,9 +2,6 @@ import styled, { css } from 'styled-components';
 import { shade } from 'polished';
 import books from '../../assets/images/books.jpg';
 
-interface FormProps {
-  hasError: boolean;
-}
 
 const media = {
   cards5: "@media(max-width: 1832px)",
@@ -42,7 +39,7 @@ export const Container = styled.div`
   }
 `;
 
-export const Form = styled.form<FormProps>`
+export const Form = styled.form`
   display: flex;
   align-items: center;
   margin-top: 20px;
@@ -63,15 +60,6 @@ export const Form = styled.form<FormProps>`
     ${input.input} {
         width: 100px;
       } 
-
-    ${(props) => props.hasError && 
-      css`
-        border-color: #c53030;
-      ` }
-
-      &::placeholder {
-      color: #a8a8b3;
-    }
   }
 
   button {
@@ -97,6 +85,20 @@ export const Error = styled.span`
   border-radius: 8px;
   background-color: #c53030; 
   padding: 2px;
+`;
+
+export const QuantityFavorites = styled.div`
+  display: flex;
+  justify-content: center;
+  text-align: center;
+
+  h3 {
+    background-color: #fe6e00;
+    max-width: 230px;
+    border-radius: 8px;
+    padding: 8px;
+    color: #fff;
+  }
 `;
 
 export const BookList = styled.ul`

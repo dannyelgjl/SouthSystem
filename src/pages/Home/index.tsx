@@ -3,6 +3,7 @@ import React, { useEffect, useState, useCallback, FormEvent } from 'react';
 import Profile from '../../components/Profile';
 import Pagination from '../../components/Pagination';
 import Modal from '../../components/Modal';
+import Button from '../../components/Button';
 // Context
 import { useFavoriteBook } from '../../hooks/FavoritesBooks';
 // Api service
@@ -10,7 +11,7 @@ import api from '../../services/api';
 // Icons
 import { MdFavorite } from 'react-icons/md';
 // Styles
-import { BookList, Form, Container } from './styles'
+import { BookList, Form, Container, QuantityFavorites } from './styles'
 // Imagem
 import logo from '../../assets/logo/SouthSystemLogo.jpg';
 // Toast
@@ -24,9 +25,8 @@ const Home: React.FC = () => {
 
   const [textFilter, setTextFilter] = useState("");
   const [books, setBooks] = useState<IBookVolumeInfo[]>([]);
-  const [inputError, setInputError] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage, setPostsPerPage] = useState(6);
+  const [postsPerPage] = useState(6);
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = books.slice(indexOfFirstPost, indexOfLastPost);
@@ -61,16 +61,17 @@ const Home: React.FC = () => {
       }).catch(err => {
         console.log(err);
       });
-  }, [textFilter, books]);
+  }, [textFilter]);
 
   return (
     <>
-      <Profile />
-
       <Container>
-        <a href="https://southsystem.com.br/" target="_blank"><img src={logo} alt="South System" /></a>
+        <Profile />
+        <a href="https://southsystem.com.br/" target="_blank" rel="noreferrer">
+          <img src={logo} alt="South System" />
+        </a>
 
-        <Form hasError={!!inputError} onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit}>
           <input
             type="text"
             value={textFilter}
@@ -78,12 +79,14 @@ const Home: React.FC = () => {
             placeholder="Busque aqui seus livros favoritos..."
           />
 
-          <button type="submit">Buscar</button>
+          <Button>Buscar</Button>
         </Form>
       </ Container >
       <Pagination postsPerPage={postsPerPage} totalPosts={books.length} paginate={paginate} />
 
-      <button>Favoritos <span>{book.length || 0}</span></button>
+      <QuantityFavorites>
+        <h3>Livros Favoritados <MdFavorite size={18} color="#ff0f0f" /> : <span>{book.length || 0}</span></h3>
+      </QuantityFavorites>
 
       <BookList>
         {currentPosts.map(book => (
@@ -95,12 +98,12 @@ const Home: React.FC = () => {
               </div>
             </div>
 
-            <button onClick={() => setFavorites(book)}>
+            <Button onClick={() => setFavorites(book)}>
               <div>
                 <MdFavorite size={16} color="#fff" />
               </div>
               <span>Favoritar</span>
-            </ button>
+            </ Button>
 
             <Modal book={book} />
           </li>

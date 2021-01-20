@@ -6,6 +6,8 @@ import Modal from '../../components/Modal';
 import Button from '../../components/Button';
 // Context
 import { useFavoriteBook } from '../../hooks/FavoritesBooks';
+// Router-dom
+import { Link } from 'react-router-dom';
 // Api service
 import api from '../../services/api';
 // Icons
@@ -78,7 +80,6 @@ const Home: React.FC = () => {
             onChange={e => setTextFilter(e.target.value)}
             placeholder="Busque aqui seus livros favoritos..."
           />
-
           <Button>Buscar</Button>
         </Form>
       </ Container >
@@ -86,7 +87,7 @@ const Home: React.FC = () => {
 
       <QuantityFavorites>
         <h3>Página: <span>{currentPage}</span></h3>
-        <h3>Livros Favoritados <MdFavorite size={18} color="#ff0f0f" /> : <span>{book.length || 0}</span></h3>
+        <Link to="/favorites"><h3>Livros Favoritados <MdFavorite size={18} color="#ff0f0f" /> : <span>{book.length || 0}</span></h3></Link>
       </QuantityFavorites>
 
       <BookList>

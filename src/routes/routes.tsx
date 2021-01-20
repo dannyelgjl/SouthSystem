@@ -6,6 +6,7 @@ import { FavoritesBooksProvider } from '../hooks/FavoritesBooks';
 // Componentes
 import Home from '../pages/Home';
 import Profile from '../pages/Profile';
+import Favorites from '../pages/Favorites';
 
 
 const Routes: React.FC = () => (
@@ -13,6 +14,7 @@ const Routes: React.FC = () => (
     <FavoritesBooksProvider>
       <Route path="/" exact component={Home} />
       <Route path="/profile" component={Profile} />
+      <Route path="/favorites" component={Favorites} />
     </FavoritesBooksProvider>
   </Switch>
 )

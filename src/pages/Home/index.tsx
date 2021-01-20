@@ -85,6 +85,7 @@ const Home: React.FC = () => {
       <Pagination postsPerPage={postsPerPage} totalPosts={books.length} paginate={paginate} />
 
       <QuantityFavorites>
+        <h3>Página: <span>{currentPage}</span></h3>
         <h3>Livros Favoritados <MdFavorite size={18} color="#ff0f0f" /> : <span>{book.length || 0}</span></h3>
       </QuantityFavorites>
 

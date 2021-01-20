@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { shade } from 'polished';
 import books from '../../assets/images/books.jpg';
 
@@ -12,9 +12,7 @@ const media = {
   littleCards: "@media(max-width: 320px)",
   littleCards1: "@media(max-width: 280px)",
   logo: "@media(max-width: 411px)",
-}
-
-const input = {
+  quantityFavorites: "@media(max-width: 333px)",
   input: "@media(max-width: 280px)"
 }
 
@@ -58,7 +56,7 @@ export const Form = styled.form`
     border: 2px solid #fff;
     border-right: 0;
 
-    ${input.input} {
+    ${media.input} {
         width: 100px;
       } 
   }
@@ -94,12 +92,20 @@ export const QuantityFavorites = styled.div`
   text-align: center;
   margin-top: 20px;
 
+  ${media.quantityFavorites} {
+    padding: 6px;
+  } 
+
   h3 {
     background-color: #fe6e00;
     max-width: 230px;
     border-radius: 8px;
     padding: 8px;
     color: #fff;
+
+    & + h3 {
+      margin-left: 5px;
+    }
   }
 `;
 

@@ -95,10 +95,10 @@ export const QuantityFavorites = styled.div`
   ${media.quantityFavorites} {
     padding: 6px;
   } 
-
+ 
   h3 {
     background-color: var(--orange);
-    max-width: 230px;
+    max-width: 280px;
     border-radius: 8px;
     padding: 8px;
     color: var(--white);
@@ -106,6 +106,10 @@ export const QuantityFavorites = styled.div`
     & + h3 {
       margin-left: 5px;
     }
+  }
+
+  a {
+    margin-left: 8px;
   }
 `;
 

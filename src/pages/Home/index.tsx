@@ -26,7 +26,7 @@ import { IBookVolumeInfo } from '../../interfaces/interface';
 
 
 const Home: React.FC = () => {
-  const { book, setFavorites, removeFavorites } = useFavoriteBook();
+  const { book, setFavorites, removeFavorites, showRemoveFavorites } = useFavoriteBook();
 
   const [textFilter, setTextFilter] = useState("");
   const [books, setBooks] = useState<IBookVolumeInfo[]>([]);
@@ -68,11 +68,6 @@ const Home: React.FC = () => {
       });
   }, [textFilter]);
 
-  const removeBook = useCallback((book: IBookVolumeInfo) => {
-    removeFavorites(book.id);
-
-    toast.error(`Você removeu ${book.volumeInfo.title} dos seus favoritos 😥`);
-  }, []);
 
   return (
     <>
@@ -110,22 +105,23 @@ const Home: React.FC = () => {
                     <span>{book.volumeInfo.title}</span>
                   </div>
                 </div>
-
                 <Modal book={book} />
 
-                <Button onClick={() => setFavorites(book)}>
-                  <div>
-                    <MdFavorite size={16} color="#fff" />
-                  </div>
-                  <span>Favoritar</span>
-                </ Button>
-
-                <Button style={{ background: "#AF0B0B" }} onClick={() => removeBook(book)}>
-                  <div>
-                    <IoRemoveCircleOutline size={16} color="#fff" />
-                  </div>
-                  <span>Remover favorito</span>
-                </ Button>
+                { showRemoveFavorites(book) ? (
+                  <Button style={{ background: "#AF0B0B" }} onClick={() => removeFavorites(book)}>
+                    <div>
+                      <IoRemoveCircleOutline size={16} color="#fff" />
+                    </div>
+                    <span>Remover favorito</span>
+                  </ Button>
+                ) : (
+                    <Button onClick={() => setFavorites(book)}>
+                      <div>
+                        <MdFavorite size={16} color="#fff" />
+                      </div>
+                      <span>Favoritar</span>
+                    </ Button>
+                  )}
               </li>
             ))}
           </BookList>

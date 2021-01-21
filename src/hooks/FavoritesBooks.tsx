@@ -6,7 +6,8 @@ import { IBookVolumeInfo } from '../interfaces/interface';
 interface FavoriteContext {
   book: IBookVolumeInfo[];
   setFavorites(book: IBookVolumeInfo): void;
-  removeFavorites(bookId: string): void;
+  removeFavorites(book: IBookVolumeInfo): void;
+  showRemoveFavorites(book: IBookVolumeInfo): boolean;
 }
 
 const FavoritesContextData = createContext<FavoriteContext>({} as FavoriteContext);
@@ -27,17 +28,20 @@ export const FavoritesBooksProvider: React.FC = ({ children }) => {
     setData([book, ...data]);
   }, [data]);
 
-  const removeFavorites = useCallback((bookId: string) => {
-    const bookRemoved = data.filter(book => book.id !== bookId);
+  const removeFavorites = useCallback((book: IBookVolumeInfo) => {
+    const bookRemoved = data.filter(bookData => bookData !== book);
 
-    if (!bookRemoved) {
-      toast.error('teste');
-
-      return;
-    }
+    toast.error(`Você removeu o livro ${book.volumeInfo.title} dos seus favoritos`);
 
     setData(bookRemoved);
   }, [data]);
+
+  const showRemoveFavorites = useCallback((book: IBookVolumeInfo) => {
+    const contains = data.includes(book);
+
+    return contains;
+  }, [data]);
+
 
   return (
     <FavoritesContextData.Provider
@@ -45,6 +49,7 @@ export const FavoritesBooksProvider: React.FC = ({ children }) => {
         book: data,
         setFavorites,
         removeFavorites,
+        showRemoveFavorites,
       }}>
       {children}
     </FavoritesContextData.Provider>

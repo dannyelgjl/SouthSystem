@@ -12,7 +12,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const App: React.FC = () => {
   return (
-    <>
+    <BrowserRouter>
       <ToastContainer
         position="top-right"
         autoClose={3000}
@@ -26,10 +26,8 @@ const App: React.FC = () => {
       />
 
       <GlobalStyle />
-      <BrowserRouter>
-        <Routes />
-      </BrowserRouter>
-    </>
+      <Routes />
+    </BrowserRouter>
   );
 }
 

@@ -195,7 +195,7 @@ export const BookList = styled.ul`
           font-size: 18px;
           font-weight: bold;
           color: var(--white);
-          min-height: 100px;
+          min-height: 170px;
         }
       }
     }

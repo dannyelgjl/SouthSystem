@@ -16,6 +16,7 @@ import { MdFavorite } from 'react-icons/md';
 import { BookList, Form, Container, QuantityFavorites } from './styles'
 // Imagem
 import logo from '../../assets/logo/SouthSystemLogo.jpg';
+import noImage from '../../assets/images/sem-foto.jpg';
 // Toast
 import { toast } from 'react-toastify';
 // Interfaces
@@ -95,8 +96,8 @@ const Home: React.FC = () => {
           <li key={book.id}>
             <div className="container-card-book">
               <div className="image-card-book">
-                <img src={book.volumeInfo.imageLinks.thumbnail} alt={book.volumeInfo.title} />
-                <span>AUTOR: {book.volumeInfo.authors}</span>
+                <img src={book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail : noImage} alt={book.volumeInfo.title} />
+                <span>{book.volumeInfo.title}</span>
               </div>
             </div>
 

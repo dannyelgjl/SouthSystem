@@ -7,8 +7,9 @@ import { Link } from 'react-router-dom';
 import { IBookVolumeInfo } from '../../interfaces/interface';
 // Icon
 import { MdFavorite } from 'react-icons/md';
-// logo
+// imagens
 import logo from '../../assets/logo/SouthSystemLogo.jpg';
+import noImage from '../../assets/images/sem-foto.jpg';
 // Estilizações
 import { ListFavorites, Container, FavoriteTitle } from './styles';
 
@@ -35,8 +36,8 @@ const Favorites: React.FC<IBookVolumeInfo> = () => {
           <li key={books.id}>
             <div className="container-card-book">
               <div className="image-card-book">
-                <img src={books.volumeInfo.imageLinks.thumbnail} alt={books.volumeInfo.title} />
-                <span>AUTOR: {books.volumeInfo.authors}</span>
+                <img src={books.volumeInfo.imageLinks ? books.volumeInfo.imageLinks.thumbnail : noImage} alt={books.volumeInfo.title} />
+                <span>{books.volumeInfo.title}</span>
               </div>
             </div>
           </li>

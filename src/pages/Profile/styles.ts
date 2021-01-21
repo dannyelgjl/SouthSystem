@@ -2,13 +2,11 @@ import styled from 'styled-components';
 import { shade } from 'polished';
 
 
-
 const media = {
   repository: "@media(max-width: 608px)",
   repositoryMobile: "@media(max-width: 462px)",
   repositoryLittle: "@media(max-width: 280px)",
 }
-
 
 export const Container = styled.div`
   display: flex;

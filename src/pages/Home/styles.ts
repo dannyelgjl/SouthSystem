@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { shade } from 'polished';
 import books from '../../assets/images/books.jpg';
 
-
 const media = {
   cards5: "@media(max-width: 1832px)",
   cards4: "@media(max-width: 1532px)",
@@ -76,7 +75,6 @@ export const Form = styled.form`
     }
   }
 `
-
 export const Error = styled.span`
   display: block;
   color: var(--white);

@@ -98,7 +98,7 @@ export const QuantityFavorites = styled.div`
  
   h3 {
     background-color: var(--orange);
-    max-width: 280px;
+    max-width: 300px;
     border-radius: 8px;
     padding: 8px;
     color: var(--white);
@@ -130,11 +130,9 @@ export const BookList = styled.ul`
   ${media.cards5} {
     grid-template-columns: repeat(5, 1fr);
   } 
-
   ${media.cards4} {
     grid-template-columns: repeat(4, 1fr);
   }
-
   ${media.cards3} {
     grid-template-columns: repeat(3, 1fr);
   }

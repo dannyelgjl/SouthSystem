@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+// Componentes
+import Loading from '../../components/Loading';
 // Router-dom
 import { Link } from 'react-router-dom';
 // API
@@ -21,7 +23,7 @@ const Profile: React.FC<IRepository> = () => {
   // Carregando dados dos Repositórios
   useEffect(() => {
     async function loadRepositories() {
-      const response = await api.get('/users/dannyelgjl/repos?size=40');
+      const response = await api.get('/users/dannyelgjl/repos?size=39');
 
       const request = response.data;
 
@@ -29,7 +31,7 @@ const Profile: React.FC<IRepository> = () => {
     }
 
     loadRepositories();
-  }, [repositories]);
+  }, []);
 
   return (
     <Container>
@@ -48,19 +50,23 @@ const Profile: React.FC<IRepository> = () => {
         </header>
       </RepositoryInfo>
 
-      <Repositories>
-        <h1>Meus Repositórios 🐱‍🏍🐱‍💻🚀🐱‍👤</h1>
-        {repositories.map(repository => (
-          <a key={repository.full_name} target="_blank" rel="noreferrer" href={repository.html_url}>
-            <img src={repository.owner.avatar_url} alt="" />
-            <div>
-              <strong>{repository.full_name}</strong>
-              <p>{repository.description}</p>
-            </div>
-            <FiChevronRight size={20} />
-          </a>
-        ))}
-      </Repositories>
+      { !repositories.length ? (
+        <Loading />
+      ) : (
+          <Repositories>
+            <h1>Meus Repositórios 🐱‍🏍🐱‍💻🚀🐱‍👤</h1>
+            {repositories.map(repository => (
+              <a key={repository.full_name} target="_blank" rel="noreferrer" href={repository.html_url}>
+                <img src={repository.owner.avatar_url} alt="" />
+                <div>
+                  <strong>{repository.full_name}</strong>
+                  <p>{repository.description}</p>
+                </div>
+                <FiChevronRight size={20} />
+              </a>
+            ))}
+          </Repositories>
+        )}
     </Container>
   )
 }

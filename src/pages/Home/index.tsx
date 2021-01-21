@@ -4,6 +4,7 @@ import Profile from '../../components/Profile';
 import Pagination from '../../components/Pagination';
 import Modal from '../../components/Modal';
 import Button from '../../components/Button';
+import Loading from '../../components/Loading';
 // Context
 import { useFavoriteBook } from '../../hooks/FavoritesBooks';
 // Router-dom
@@ -90,28 +91,32 @@ const Home: React.FC = () => {
         <h3>Página: <span>{currentPage}</span></h3>
         <Link to="/favorites"><h3>Livros Favoritados <MdFavorite size={18} color="#ff0f0f" /> : <span>{book.length || 0}</span></h3></Link>
       </QuantityFavorites>
+      { !currentPosts.length ? (
+        <Loading />
+      ) : (
+          <BookList>
+            {currentPosts.map(book => (
+              <li key={book.id}>
+                <div className="container-card-book">
+                  <div className="image-card-book">
+                    <img src={book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail : noImage} alt={book.volumeInfo.title} />
+                    <span>{book.volumeInfo.title}</span>
+                  </div>
+                </div>
 
-      <BookList>
-        {currentPosts.map(book => (
-          <li key={book.id}>
-            <div className="container-card-book">
-              <div className="image-card-book">
-                <img src={book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail : noImage} alt={book.volumeInfo.title} />
-                <span>{book.volumeInfo.title}</span>
-              </div>
-            </div>
+                <Button onClick={() => setFavorites(book)}>
+                  <div>
+                    <MdFavorite size={16} color="#fff" />
+                  </div>
+                  <span>Favoritar</span>
+                </ Button>
 
-            <Button onClick={() => setFavorites(book)}>
-              <div>
-                <MdFavorite size={16} color="#fff" />
-              </div>
-              <span>Favoritar</span>
-            </ Button>
+                <Modal book={book} />
+              </li>
+            ))}
+          </BookList>
+        )}
 
-            <Modal book={book} />
-          </li>
-        ))}
-      </BookList>
     </>
   )
 }

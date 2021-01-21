@@ -13,6 +13,7 @@ import { Link } from 'react-router-dom';
 import api from '../../services/api';
 // Icons
 import { MdFavorite } from 'react-icons/md';
+import { IoRemoveCircleOutline } from 'react-icons/io5';
 // Styles
 import { BookList, Form, Container, QuantityFavorites } from './styles'
 // Imagem
@@ -25,7 +26,7 @@ import { IBookVolumeInfo } from '../../interfaces/interface';
 
 
 const Home: React.FC = () => {
-  const { book, setFavorites } = useFavoriteBook();
+  const { book, setFavorites, removeFavorites } = useFavoriteBook();
 
   const [textFilter, setTextFilter] = useState("");
   const [books, setBooks] = useState<IBookVolumeInfo[]>([]);
@@ -67,6 +68,12 @@ const Home: React.FC = () => {
       });
   }, [textFilter]);
 
+  const removeBook = useCallback((book: IBookVolumeInfo) => {
+    removeFavorites(book.id);
+
+    toast.error(`Você removeu ${book.volumeInfo.title} dos seus favoritos 😥`);
+  }, []);
+
   return (
     <>
       <Profile />
@@ -104,6 +111,8 @@ const Home: React.FC = () => {
                   </div>
                 </div>
 
+                <Modal book={book} />
+
                 <Button onClick={() => setFavorites(book)}>
                   <div>
                     <MdFavorite size={16} color="#fff" />
@@ -111,7 +120,12 @@ const Home: React.FC = () => {
                   <span>Favoritar</span>
                 </ Button>
 
-                <Modal book={book} />
+                <Button style={{ background: "#AF0B0B" }} onClick={() => removeBook(book)}>
+                  <div>
+                    <IoRemoveCircleOutline size={16} color="#fff" />
+                  </div>
+                  <span>Remover favorito</span>
+                </ Button>
               </li>
             ))}
           </BookList>

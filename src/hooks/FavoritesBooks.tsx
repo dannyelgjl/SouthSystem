@@ -6,6 +6,7 @@ import { IBookVolumeInfo } from '../interfaces/interface';
 interface FavoriteContext {
   book: IBookVolumeInfo[];
   setFavorites(book: IBookVolumeInfo): void;
+  removeFavorites(bookId: string): void;
 }
 
 const FavoritesContextData = createContext<FavoriteContext>({} as FavoriteContext);
@@ -26,12 +27,24 @@ export const FavoritesBooksProvider: React.FC = ({ children }) => {
     setData([book, ...data]);
   }, [data]);
 
+  const removeFavorites = useCallback((bookId: string) => {
+    const bookRemoved = data.filter(book => book.id !== bookId);
+
+    if (!bookRemoved) {
+      toast.error('teste');
+
+      return;
+    }
+
+    setData(bookRemoved);
+  }, [data]);
 
   return (
     <FavoritesContextData.Provider
       value={{
         book: data,
         setFavorites,
+        removeFavorites,
       }}>
       {children}
     </FavoritesContextData.Provider>
